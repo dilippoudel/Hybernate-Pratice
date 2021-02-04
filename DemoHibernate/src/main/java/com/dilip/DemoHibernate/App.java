@@ -13,9 +13,16 @@ public class App
 {
     public static void main( String[] args )
     {
-    	// Alien telusko = new Alien(); // no need to create object to fetch data from backend
+    	AlienName an = new AlienName();
+    	an.setFname("Dilip");
+    	an.setMname("Kumar");
+    	an.setLname("Poudel");
     	
-    	Alien telusko = null;
+    	Alien telusko = new Alien();
+    	 telusko.setAid(101);
+    	 telusko.setColor("pink");
+    	 telusko.setAname(an);
+    	 
     	// configuration
     	Configuration con = new Configuration().configure().addAnnotatedClass(Alien.class);
     	
@@ -26,7 +33,7 @@ public class App
     	Session session = sf.openSession();
     	
     	Transaction tx =  session.beginTransaction();
-    	
+    	session.save(telusko);
     	telusko = (Alien) session.get(Alien.class, 1056);
     	tx.commit();
     	System.out.println(telusko);
