@@ -1,0 +1,5 @@
+package com.dilip.DemoHibernate;
+
+public class Alien {
+
+}
