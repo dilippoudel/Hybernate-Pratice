@@ -11,7 +11,6 @@ import javax.persistence.Transient;
 public class Alien {
 	@Id
 	private int aid;
-	@Transient // this anotation will not save the coressponed field in database, so aname will not save
 	private String aname;
 	@Column(name="alien_color") // this annotation will change the name of column in table
 	private String color;
