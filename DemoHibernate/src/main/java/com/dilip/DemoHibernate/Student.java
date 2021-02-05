@@ -5,7 +5,9 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
 @Entity
 public class Student {
 	@Id
@@ -14,6 +16,8 @@ public class Student {
 	private int marks;
 	@OneToMany(mappedBy = "student")
 	private List<Laptop> Laptop = new ArrayList<Laptop>();
+	@ManyToMany(mappedBy = "student")
+	private List<Courses> courses = new ArrayList<Courses>();
 
 	public int getRollId() {
 		return rollId;
@@ -39,8 +43,6 @@ public class Student {
 		this.marks = marks;
 	}
 
-	
-
 	public List<Laptop> getLaptop() {
 		return Laptop;
 	}
@@ -49,10 +51,20 @@ public class Student {
 		Laptop = laptop;
 	}
 
+	public List<Courses> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Courses> courses) {
+		this.courses = courses;
+	}
+
 	@Override
 	public String toString() {
 		return "Student [rollId=" + rollId + ", name=" + name + ", marks=" + marks + ", Laptop=" + Laptop + "]";
 	}
 
+//	@ManyToMany(mappedBy = "courses")
+//	private List<Courses> courses = new ArrayList<Courses>();
 
 }

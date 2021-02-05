@@ -23,20 +23,26 @@ public class App
     	laptop.setLid(101);
     	laptop.setName("Dell");
     	laptop.setHarddisk(hd);
+    	
 
+    	Courses courses = new Courses();
+    	courses.setCid(201);
+    	courses.setCname("computer science");
+    	
+    	
     	
     	Student std = new Student();
     	std.setRollId(1);
     	std.setMarks(50);
     	std.setName("DIlip");
-    	std.getLaptop().add(laptop);
-    	
-    	
-	// configuration
+    	std.getLaptop().add(laptop);    	
+    	courses.getStudent().add(std);	
+    	// configuration
     	Configuration con = new Configuration().configure();
     	con.addAnnotatedClass(Student.class);
     	con.addAnnotatedClass(Laptop.class);
     	con.addAnnotatedClass(HardDisk.class);
+    	con.addAnnotatedClass(Courses.class);
     	
     	// create session factory
     	ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(con.getProperties()).build();
@@ -47,6 +53,7 @@ public class App
     	session.beginTransaction();
     	
     	session.save(laptop);
+    	session.save(courses);
     	session.save(std);
     	session.save(hd);
     	session.getTransaction().commit();
