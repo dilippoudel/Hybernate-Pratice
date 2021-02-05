@@ -1,16 +1,19 @@
 package com.dilip.DemoHibernate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 @Entity
 public class Student {
 	@Id
 	private int rollId;
 	private String name;
 	private int marks;
-	@OneToOne
-	private Laptop laptop;
+	@OneToMany(mappedBy = "student")
+	private List<Laptop> Laptop = new ArrayList<Laptop>();
 
 	public int getRollId() {
 		return rollId;
@@ -36,17 +39,20 @@ public class Student {
 		this.marks = marks;
 	}
 
-	public Laptop getLaptop() {
-		return laptop;
+	
+
+	public List<Laptop> getLaptop() {
+		return Laptop;
 	}
 
-	public void setLaptop(Laptop laptop) {
-		this.laptop = laptop;
+	public void setLaptop(List<Laptop> laptop) {
+		Laptop = laptop;
 	}
 
 	@Override
 	public String toString() {
-		return "Student [rollId=" + rollId + ", name=" + name + ", marks=" + marks + ", laptop=" + laptop + "]";
+		return "Student [rollId=" + rollId + ", name=" + name + ", marks=" + marks + ", Laptop=" + Laptop + "]";
 	}
+
 
 }

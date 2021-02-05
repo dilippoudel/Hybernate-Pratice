@@ -2,6 +2,7 @@ package com.dilip.DemoHibernate;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -9,6 +10,8 @@ public class Laptop {
 	@Id
 	private int lid;
 	private String name;
+	@ManyToOne
+	private Student student;
 	@OneToOne
 	private HardDisk harddisk;
 
@@ -34,6 +37,15 @@ public class Laptop {
 
 	public void setHarddisk(HardDisk harddisk) {
 		this.harddisk = harddisk;
+	}
+	
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
 	}
 
 	@Override

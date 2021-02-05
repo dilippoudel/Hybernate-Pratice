@@ -29,8 +29,7 @@ public class App
     	std.setRollId(1);
     	std.setMarks(50);
     	std.setName("DIlip");
-    	std.setLaptop(laptop);
-
+    	std.getLaptop().add(laptop);
     	
     	
 	// configuration
