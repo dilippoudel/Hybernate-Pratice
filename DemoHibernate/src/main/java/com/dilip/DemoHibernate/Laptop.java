@@ -9,8 +9,8 @@ public class Laptop {
 	@Id
 	private int lid;
 	private String name;
-//	@OneToOne
-//	private HardDisk harddisk;
+	@OneToOne
+	private HardDisk harddisk;
 
 	public int getLid() {
 		return lid;
@@ -28,18 +28,20 @@ public class Laptop {
 		this.name = name;
 	}
 
-//	public HardDisk getHarddisk() {
-//		return harddisk;
-//	}
-//
-//	public void setHarddisk(HardDisk harddisk) {
-//		this.harddisk = harddisk;
-//	}
+	public HardDisk getHarddisk() {
+		return harddisk;
+	}
+
+	public void setHarddisk(HardDisk harddisk) {
+		this.harddisk = harddisk;
+	}
 
 	@Override
 	public String toString() {
-		return "Laptop [lid=" + lid + ", name=" + name + ", harddisk= ]";
+		return "Laptop [lid=" + lid + ", name=" + name + ", harddisk=" + harddisk + "]";
 	}
+
+	
 
 	
 }
