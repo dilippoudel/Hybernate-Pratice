@@ -58,5 +58,29 @@ public class App
     	session.save(hd);
     	session.getTransaction().commit();
     	
+    	
+    	Student s1 = session.get(Student.class, 1);
+    	System.out.println(s1);
+    	session.close();
+    	
+    	Session session1 = sf.openSession();
+    	session1.beginTransaction();
+    	Student s2 = session1.get(Student.class, 1);
+    	System.out.println(s2);
+    	
+    	session1.getTransaction().commit();
+    	session1.close();
+    	
+    	
+    	
+    	Session session2 = sf.openSession();
+    	session2.beginTransaction();
+    	Student s3 = session2.get(Student.class, 1);
+    	System.out.println(s3);
+    	
+    	session2.getTransaction().commit();
+    	session2.close();
+
+    	
     }
 }
