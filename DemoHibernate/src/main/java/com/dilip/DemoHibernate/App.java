@@ -1,8 +1,11 @@
 package com.dilip.DemoHibernate;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
+import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -16,6 +19,7 @@ import org.hibernate.service.ServiceRegistry;
  */
 public class App 
 {
+	@SuppressWarnings({ "unchecked", "deprecation" })
     public static void main( String[] args )
     {
     	
@@ -95,7 +99,7 @@ public class App
 //    	session2.close();
     	
     	
-    	
+    	// ###############  Working with HQL ######################
     	
     	// Inserting multiple datas into database
     	
@@ -141,6 +145,28 @@ public class App
     	for(Object[] al : als) {
     		System.out.println("Name : " + al[0] +" Color : " + al[1] );
     	}
+    	
+    	
+    	
+    	// ############## Working with SQL /// Native querries #################
+    	SQLQuery  qs = session.createNativeQuery("select * from alien_table where aid=9");
+    	qs.addEntity(Alien.class);
+    	List<Alien> alss = qs.list();
+    	for(Alien a : alss ) {
+    		System.out.println(a);
+    	}
+    	
+    	
+    	SQLQuery  qs1 = session.createNativeQuery("select aname, color from alien_table");
+    	qs1.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+    	qs1.addEntity(Alien.class);
+    	List<Alien> alsss = qs1.list();
+    	for(Alien a : alsss ) {
+    		Map m = (Map)a;
+    		System.out.println(m.get("aname") + " : " + m.get("color"));
+    	}
+    	
+    	
     	
     	session.getTransaction().commit();
     	session.close();
